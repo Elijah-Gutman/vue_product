@@ -23,9 +23,12 @@ export default {
   <div>
     <h1>Product information</h1>
     <p>Name: {{ product.name }}</p>
-    <p>Url: {{ product.url }}</p>
-    <p>Width: {{ product.width }}</p>
-    <p>Height: {{ product.height }}</p>
+    <p>Image Url: {{ product.image_url }}</p>
+    <p>Description: {{ product.description }}</p>
+    <p>Price: {{ product.price }}</p>
+    <p>Category: {{ product.category }}</p>
+    <p>tax: {{ product.tax }}</p>
+    <p>total: {{ product.total }}</p>
     <form v-on:submit.prevent="handleSubmit">
       <div>
         Name:
@@ -52,3 +55,5 @@ export default {
 </template>
 
 <style></style>
+
+<!-- testing -->
