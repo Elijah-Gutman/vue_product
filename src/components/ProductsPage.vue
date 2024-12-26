@@ -2,7 +2,6 @@
 import axios from "axios";
 import ProductsIndex from "./ProductsIndex.vue";
 import ProductsNew from "./ProductsNew.vue";
-
 export default {
   components: {
     ProductsIndex,
@@ -37,12 +36,10 @@ export default {
   },
 };
 </script>
-
 <template>
   <main>
+    <h1>Welcome to Vue!</h1>
     <ProductsNew v-on:createProduct="handleCreateProduct" />
     <ProductsIndex v-bind:products="products" />
   </main>
 </template>
-
-<style></style>
