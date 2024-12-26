@@ -95,5 +95,3 @@ export default {
     </Modal>
   </main>
 </template>
-
-<style></style>
