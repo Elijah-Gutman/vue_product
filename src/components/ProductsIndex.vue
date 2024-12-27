@@ -11,16 +11,20 @@ export default {
 <template>
   <div>
     <h1>All products</h1>
-    <div v-for="product in products" v-bind:key="product.id">
+    <div
+      v-for="product in products"
+      v-bind:key="product.id"
+      @click="$emit('showProduct', product)"
+    >
       <h2>{{ product.name }}</h2>
       <img v-bind:src="product.image_url" />
-      <p>Description: {{ product.description }}</p>
-      <p>Category: {{ product.category }}</p>
       <p>Price: {{ product.price }}</p>
-      <p>Tax Rate: {{ product.tax }}</p>
-      <p>Total: {{ product.total }}</p>
     </div>
   </div>
 </template>
 
-<style></style>
+<style>
+div {
+  cursor: pointer;
+}
+</style>

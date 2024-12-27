@@ -40,6 +40,14 @@ export default {
   padding: 1em;
 }
 
+.modal-main img {
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
 .modal-main button.close {
   font-size: 2em;
   background: none;
