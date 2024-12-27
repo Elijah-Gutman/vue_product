@@ -7,10 +7,14 @@ export default {
 </script>
 
 <template>
-  <div v-if="show" class="modal-background">
-    <section class="modal-main">
+  <div v-if="show" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <section class="bg-white rounded-lg w-full sm:w-3/4 lg:w-1/2 p-8 shadow-lg">
       <slot></slot>
-      <button class="close" type="button" v-on:click="$emit('close')">
+      <button
+        class="absolute top-4 right-4 text-2xl text-gray-600 hover:text-gray-900 focus:outline-none"
+        type="button"
+        v-on:click="$emit('close')"
+      >
         &#x2715;
       </button>
     </section>
