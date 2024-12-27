@@ -24,7 +24,7 @@ export default {
 <template>
   <div class="product-details">
     <h2>Product Details</h2>
-    <img :src="product.image_url" alt="product image" class="modal-image" />
+    <img :src="product.images[0]" alt="product image" class="modal-image" />
     <div class="product-info">
       <p>
         <strong>Name:</strong>
