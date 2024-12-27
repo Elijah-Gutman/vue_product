@@ -48,12 +48,8 @@ export default {
       </div>
       <button type="submit">Update product</button>
     </form>
-    <button v-on:click="$emit('destroyProduct', product)">
-      Destroy product
-    </button>
+    <button v-on:click="$emit('destroyProduct', product)">Destroy product</button>
   </div>
 </template>
 
 <style></style>
-
-<!-- testing -->
