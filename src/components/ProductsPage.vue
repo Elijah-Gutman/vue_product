@@ -81,7 +81,6 @@ export default {
 
 <template>
   <main>
-    <ProductsNew v-on:createProduct="handleCreateProduct" />
     <ProductsIndex
       v-bind:products="products"
       v-on:showProduct="handleShowProduct"
