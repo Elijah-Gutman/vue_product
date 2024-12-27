@@ -20,8 +20,40 @@ export default {
           Create Product
         </router-link>
       </div>
+
+      <div class="flex items-center space-x-4">
+        <router-link
+          v-if="!isLoggedIn"
+          to="/signup"
+          class="text-sm font-medium text-primary hover:text-gray-800 transition"
+        >
+          Signup
+        </router-link>
+        <span v-if="!isLoggedIn" class="text-gray-600">|</span>
+        <router-link
+          v-if="!isLoggedIn"
+          to="/login"
+          class="text-sm font-medium text-primary hover:text-gray-800 transition"
+        >
+          Login
+        </router-link>
+        <span v-if="isLoggedIn" class="text-gray-600">|</span>
+        <router-link
+          v-if="isLoggedIn"
+          to="/logout"
+          class="text-sm font-medium text-primary hover:text-gray-800 transition"
+        >
+          Logout
+        </router-link>
+      </div>
     </nav>
   </header>
 </template>
+
+<style scoped>
+.text-primary {
+  color: #4caf50;
+}
+</style>
 
 <style></style>
