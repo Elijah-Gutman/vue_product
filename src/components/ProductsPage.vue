@@ -12,67 +12,34 @@ export default {
     ProductsShow,
     Modal,
   },
-  data: function () {
+  data() {
     return {
       products: [],
-      currentProduct: {},
+      currentProduct: null,
       isProductsShowVisible: false,
     };
   },
-  created: function () {
+  created() {
     this.handleIndexProducts();
   },
   methods: {
-    handleIndexProducts: function () {
+    handleIndexProducts() {
       axios.get("/products.json").then((response) => {
         console.log("products index", response);
         this.products = response.data;
       });
     },
-    handleCreateProduct: function (params) {
-      axios
-        .post("/products.json", params)
-        .then((response) => {
-          console.log("products create", response);
-          this.products.push(response.data);
-        })
-        .catch((error) => {
-          console.log("products create error", error.response);
-        });
+    handleCreateProduct(params) {
+      axios.post("/products.json", params).then((response) => {
+        console.log("products create", response);
+        this.products.push(response.data);
+      });
     },
-    handleShowProduct: function (product) {
-      console.log("handleShowProduct", product);
+    handleShowProduct(product) {
       this.currentProduct = product;
       this.isProductsShowVisible = true;
     },
-    handleUpdateProduct: function (id, params) {
-      console.log("handleUpdateProduct", id, params);
-      axios
-        .patch(`/products/${id}.json`, params)
-        .then((response) => {
-          console.log("products update", response);
-          this.products = this.products.map((product) => {
-            if (product.id === response.data.id) {
-              return response.data;
-            } else {
-              return product;
-            }
-          });
-          this.handleClose();
-        })
-        .catch((error) => {
-          console.log("products update error", error.response);
-        });
-    },
-    handleDestroyProduct: function (product) {
-      axios.delete(`/products/${product.id}.json`).then((response) => {
-        console.log("products destroy", response);
-        var index = this.products.indexOf(product);
-        this.products.splice(index, 1);
-        this.handleClose();
-      });
-    },
-    handleClose: function () {
+    handleClose() {
       this.isProductsShowVisible = false;
     },
   },
@@ -80,17 +47,56 @@ export default {
 </script>
 
 <template>
-  <main>
-    <ProductsIndex
-      v-bind:products="products"
-      v-on:showProduct="handleShowProduct"
-    />
-    <Modal v-bind:show="isProductsShowVisible" v-on:close="handleClose">
-      <ProductsShow
-        v-bind:product="currentProduct"
-        v-on:updateProduct="handleUpdateProduct"
-        v-on:destroyProduct="handleDestroyProduct"
+  <div>
+    <h1>All products</h1>
+    <div
+      class="product-card"
+      v-for="product in products"
+      v-bind:key="product.id"
+    >
+      <h2>{{ product.name }}</h2>
+      <img
+        v-bind:src="product.image_url"
+        alt="product image"
+        class="product-image"
       />
-    </Modal>
-  </main>
+      <p>Price: ${{ product.price }}</p>
+      <button class="info-button" @click="handleShowProduct(product)">
+        More Info
+      </button>
+      <Modal :show="isProductsShowVisible" @close="handleClose">
+        <ProductsShow v-if="currentProduct" :product="currentProduct" />
+      </Modal>
+    </div>
+  </div>
 </template>
+
+<style>
+.product-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin: 10px;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.product-image {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}
+
+.info-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.info-button:hover {
+  background-color: #45a049;
+}
+</style>
