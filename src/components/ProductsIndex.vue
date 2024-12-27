@@ -15,7 +15,7 @@ export default {
     </div>
     <div>
       <div v-for="product in products" v-bind:key="product.id">
-        <img v-bind:src="product.image_url" alt="Product Image" />
+        <img v-bind:src="product.images[0]" alt="Product Image" />
         <div>
           <h2>{{ product.name }}</h2>
           <p>{{ product.description }}</p>
